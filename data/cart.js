@@ -22,3 +22,12 @@ export function updateCart(productId){
       }
       console.log(cart);
 }
+
+export function removefromCart(productId){
+  cart.forEach((cartItem,index)=>{
+    if(cartItem.productId===productId){
+      cart.splice(index,1);
+      return;
+    }
+  });
+}
