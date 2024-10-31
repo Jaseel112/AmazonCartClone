@@ -1,15 +1,24 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import { loadProducts } from "../data/products.js";
+import { loadProducts,loadProductFetch } from "../data/products.js";
 
+
+loadProductFetch().then(()=>{
+  renderOrderSummary();
+  renderPaymentSummary();
+});
+
+/*
  new Promise((resolve)=>{
-  loadProducts(()=>{
+  loadProductsFetch(()=>{
     resolve();
   }); 
  }).then(()=>{
   renderOrderSummary();
   renderPaymentSummary();
  });
+*/
+
 
  /*
  using call back function like below has some limitation if we have a lot of call back functions the code become more nested, 

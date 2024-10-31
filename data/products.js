@@ -1,5 +1,42 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
+
+/*
+fetch gives the same result as xhr.open('GET','https://supersimplebackend.dev/products');
+  xhr.send();
+
+
+fetch is like promise so is response.json()
+so we can use then() directly with fetch
+
+ it waits until fetch is complete then goto then() block where we give response as an argument from fetch where we have response.json() which is also act like promise what it does is it gives us the response data ,we use return with it because it wait ubtil it is finished and then go to then() block and run the function in there
+*/
+export function loadProductFetch(){
+  const promise=fetch('https://supersimplebackend.dev/products')
+    .then((response)=>{
+    return response.json();
+  })
+    .then((productsData)=>{
+      products=productsData
+        .map((productDetails)=>{
+      if(productDetails.type==='clothing'){
+        return new Cloth(productDetails);
+      }
+      return new Product(productDetails);
+    
+    });
+  });
+  return promise;
+}
+
+
+/*
+loadProductFetch().then(()=>{
+  console.log('next step');
+})
+*/
+
+
 export function getProduct(productId){
   let matchingProduct;
     products.forEach((product)=>{
