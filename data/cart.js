@@ -45,3 +45,16 @@ export function removefromCart(productId){
     }
   });
 }
+
+export function updateDeliveryOption(productId,deliveryOptionId){
+  let matchingitem;
+    cart.forEach((item)=>{
+      if(item.productId===productId){
+        matchingitem=item;
+      }
+    });
+
+    matchingitem.deliveryOptionId=deliveryOptionId;
+
+    saveToStorage();
+}
